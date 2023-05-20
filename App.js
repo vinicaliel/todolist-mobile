@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CreateTask from './src/pages/CreateTask';
+import TasksSearch from './src/pages/TasksSearch';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +29,7 @@ export default function App() {
         }}>
         <Tab.Screen name="Tasks" component={Tasks} />
         <Tab.Screen name="Adding" component={CreateTask} />
-        <Tab.Screen name= "Search" component={CreateTask}/>
+        <Tab.Screen name= "Search" component={TasksSearch}/>
       </Tab.Navigator>
     </NavigationContainer>
   );
