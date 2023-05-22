@@ -1,11 +1,11 @@
 import { StyleSheet, View, FlatList  } from 'react-native';
 import CardTasks from '../components/CardTasks';
 
-const mockTasks= [
-    {title: 'Um Título', description: 'Umas descrição qualquer', key: '1'},
-    {title: 'Um Título', description: 'Umas descrição qualquer', key: '2'},
-    {title: 'Um Título', description: 'Umas descrição qualquer' , key: '3'},
-    {title: 'Um Título', description: 'Umas descrição qualquer' , key: '4'}
+const TasksDB= [
+    {title: 'Um Título', description: 'Umas descrição qualquer', id: '1'},
+    {title: 'Um Título', description: 'Umas descrição qualquer', id: '2'},
+    {title: 'Um Título', description: 'Umas descrição qualquer' , id: '3'},
+    {title: 'Um Título', description: 'Umas descrição qualquer' , id: '4'}
 ]
 
 const Tasks = () => {
@@ -14,8 +14,8 @@ const Tasks = () => {
             <FlatList
                 tyle={styles.flatListTasks}
                 numColumns={1}
-                keyExtractor={(item) => item.key}
-                data={mockTasks}
+                keyExtractor={(item) => item.id}
+                data={TasksDB}
                 renderItem={({ item }) => (
                     <CardTasks Title={item.title} Description={item.description} />
                 )}
