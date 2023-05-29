@@ -1,21 +1,47 @@
-import { StyleSheet, View, FlatList  } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useState, useEffect } from 'react';
 import CardTasks from '../components/CardTasks';
-
-const TasksDB= [
-    {title: 'Um Título', description: 'Umas descrição qualquer', id: '1'},
-    {title: 'Um Título', description: 'Umas descrição qualquer', id: '2'},
-    {title: 'Um Título', description: 'Umas descrição qualquer' , id: '3'},
-    {title: 'Um Título', description: 'Umas descrição qualquer' , id: '4'}
-]
+import Axios from 'axios';
 
 const Tasks = () => {
-    return(
+    const [taskDB, setTaskDB] = useState([])
+
+    //get na api
+    const allDataTasks = () => {
+        try {
+            Axios.get('http://192.168.0.10:3333/task')
+                .then((response) => {
+                    setTaskDB(response.data.reverse())
+                })
+    
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+
+    //get na api quando o usuario vai para a tela de tasks
+    const navigation = useNavigation();
+    useEffect(() => {
+        const focus = navigation.addListener('tabPress', () => {
+            console.log('foi')
+            allDataTasks()
+        });
+
+        return focus;
+    }, [navigation]);
+
+    //get na api quando renderiza o app
+    useEffect(() => allDataTasks(), []);
+
+
+    return (
         <View style={styles.container}>
             <FlatList
                 tyle={styles.flatListTasks}
                 numColumns={1}
                 keyExtractor={(item) => item.id}
-                data={TasksDB}
+                data={taskDB}
                 renderItem={({ item }) => (
                     <CardTasks Title={item.title} Description={item.description} />
                 )}
