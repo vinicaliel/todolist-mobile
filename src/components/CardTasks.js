@@ -1,6 +1,12 @@
 import { StyleSheet, Text, View, TouchableOpacity  } from 'react-native';
+import Axios from 'axios';
 
-const CardTasks = ({Title, Description}) => {
+const CardTasks = ({Title, Description, IdTask}) => {
+
+  const deletetask = () => {
+
+  }
+  
     return(
         <TouchableOpacity style={styles.container}>
             <View style={styles.card}>
@@ -14,7 +20,7 @@ const CardTasks = ({Title, Description}) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 65,
+    height: 80,
     justifyContent: 'center',
     borderBottomWidth: 1,
     borderColor: '#29323C'
