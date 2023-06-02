@@ -5,6 +5,7 @@ import CardTasks from '../components/CardTasks';
 import Axios from 'axios';
 
 const Tasks = () => {
+    const navigation = useNavigation()
     const [taskDB, setTaskDB] = useState([])
 
     //get na api
@@ -21,19 +22,16 @@ const Tasks = () => {
     }
 
     //get na api quando o usuario vai para a tela de tasks
-    const navigation = useNavigation();
     useEffect(() => {
         const focus = navigation.addListener('tabPress', () => {
             console.log('foi')
             allDataTasks()
         });
-
-        return focus;
-    }, [navigation]);
+        return focus
+    }, [navigation])
 
     //get na api quando renderiza o app
-    useEffect(() => allDataTasks(), []);
-
+    useEffect(() => allDataTasks(), [])
 
     return (
         <View style={styles.container}>
